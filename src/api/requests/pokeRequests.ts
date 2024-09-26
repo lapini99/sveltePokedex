@@ -1,13 +1,12 @@
-import type { Pokedex } from "../../interfaces/pokedex";
-import type { Pokemon } from "../../interfaces/pokemon";
 import pokeAPI from "../pokeApi";
 
 const APIinstance = new pokeAPI();
 
-export const getOnePokemon = async (pokemon: Pokemon): Promise<any> => {
+// @ts-ignore
+export const getOnePokemon = async (name) => {
     try {
         return await APIinstance.instance.get(
-            `${APIinstance.APIBaseURL}pokemon/${pokemon}`
+            `${APIinstance.APIBaseURL}pokemon/${name}`
         )
     } catch (error) {
         console.log(error)
@@ -24,7 +23,8 @@ export const getAllPokemon = async () => {
     }
 }
 
-export const getRegionPokedex = async (region: Pokedex): Promise<any> => {
+// @ts-ignore
+export const getRegionPokedex = async (region) => {
     try {
         return await APIinstance.instance.get(
             `${APIinstance.APIBaseURL}/pokedex/${region}`

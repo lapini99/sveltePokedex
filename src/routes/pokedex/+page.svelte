@@ -1,40 +1,37 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
-    import { getAllPokemon } from "../../api/requests/pokeRequests";
+	import { getAllPokemon } from "../../api/requests/pokeRequests";
+	import type { Pokemon } from "../../interfaces/pokemon";
 
-	let allPokemons = [];
-	
+	let allPokemons: Pokemon[] = [];
+	let flag: boolean = true;
+
 	onMount(async () => {
 		const pokemons = await getAllPokemon();
-		// allPokemons = pokemons;
+		allPokemons.push(...pokemons?.data.results);
+		flag = false;
 	});
+	console.log(allPokemons);
 </script>
 
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
+	<title>Pokedex</title>
+	<meta name="pokemons list" content="Pokemon pokedex" />
 </svelte:head>
 
 <div class="text-column">
-	<h1>About this app</h1>
-
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make
-		your own by typing the following into your command line and following the
-		prompts:
-	</p>
-
-	<pre>npm create svelte@latest</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side
-		interactivity needed. Because of that, we don't need to load any
-		JavaScript. Try viewing the page's source, or opening the devtools
-		network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading
-		and form handling. Try using it with JavaScript disabled!
-	</p>
+	<h1>Pokédex</h1>
+	{#if flag}
+		<span>hola</span>
+	{:else}
+		<div>
+			Pokemons
+			{#each allPokemons as pokemon, index}
+				<div>
+					<span>{pokemon.name}</span>
+					<img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt="pokemon">
+				</div>
+			{/each}
+		</div>
+	{/if}
 </div>
