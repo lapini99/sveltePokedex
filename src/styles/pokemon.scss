@@ -1,0 +1,66 @@
+.container {
+    background-color: #407098;
+
+    .top {
+        display: flex;
+        height: 50px;
+        border: 2px solid #505050;
+        background-color: #5067E8;
+
+        .block1 {
+            height: 47px;
+            width: 70%;
+            border-right: 2px solid #505050;
+            border-bottom: 3px solid #A8B8F0;
+        }
+
+        .block2 {
+            border-left: 3px solid #A8B8F0;
+            border-bottom: 3px solid #A8B8F0;
+            width: 30%;
+            background-color: #7890E0;
+        }
+    }
+
+    .pokedex {
+        display: inline-flex;
+
+        .pokemons-wrapper {
+            display: flex;
+            height: 500px;
+            flex-flow: column;
+            gap: 5px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+
+            .pokemon {
+                display: inline-flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-items: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .bot {
+        height: 50px;
+        display: flex;
+        border: 2px solid #505050;
+        background-color: #5067E8;
+
+        .block1 {
+            height: 47px;
+            width: 70%;
+            border-right: 2px solid #505050;
+            border-top: 3px solid #A8B8F0;
+        }
+
+        .block2 {
+            border-left: 3px solid #A8B8F0;
+            border-top: 3px solid #A8B8F0;
+            width: 30%;
+            background-color: #7890E0;
+        }
+    }
+}
