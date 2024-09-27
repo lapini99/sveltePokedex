@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import { getAllPokemon } from "../../api/requests/pokeRequests";
 	import type { Pokemon } from "../../interfaces/pokemon";
 	import pokeballIcon from "../../lib/images/pokeball.svg";
@@ -11,8 +11,11 @@
 		const pokemons = await getAllPokemon();
 		allPokemons.push(...pokemons?.data.results);
 		loading = false;
+
+		await tick();
 	});
-	console.log(allPokemons);
+
+	let imgIndex = 0;
 </script>
 
 <svelte:head>
@@ -30,19 +33,24 @@
 				<div class="block1">
 					<span class="pokedex-region">Pokédex</span>
 				</div>
-				<div class="block2">
-				</div>
+				<div class="block2"></div>
 			</div>
 			<div class="pokedex">
-				<img src={pokeballIcon} alt="pokeball" />
+				<img
+					class="sprite"
+					src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imgIndex}.png`}
+					alt="pokeball"
+				/>
 				<div class="pokemons-wrapper">
 					{#each allPokemons as pokemon, index}
 						<div class="pokemon">
-							<img
-								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
-								alt="pokemon"
-							/>
-							<span>{pokemon.name}</span>
+							<button
+								id={index.toString()}
+								class="name-container"
+								on:click={(e) => { imgIndex = parseInt(e.target?.id) + 1}}>
+								<img src={pokeballIcon} alt="pokeball" />
+								{pokemon.name.toUpperCase()}
+							</button>
 						</div>
 					{/each}
 				</div>
@@ -51,8 +59,7 @@
 				<div class="block1">
 					<span class="pokedex-region">Pokémon #</span>
 				</div>
-				<div class="block2">
-				</div>
+				<div class="block2"></div>
 			</div>
 		</div>
 	{/if}
