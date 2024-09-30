@@ -21,7 +21,13 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@babel/preset-react": "^7.24.7",
+		"@excalidraw/excalidraw": "^0.17.6",
+		"@vitejs/plugin-react": "^4.3.2",
 		"axios": "^1.7.7",
-		"sass": "^1.79.3"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"sass": "^1.79.3",
+		"svelte-preprocess-react": "^0.17.1"
 	}
 }

@@ -73,7 +73,7 @@
 							<button
 								id={pokemon?.entry_number?.toString()}
 								class="name-container"
-								on:click={() => {imgUrl = parseInt(pokemon?.pokemon_species && pokemon?.pokemon_species.url.match(/\/(\d+)\/$/)[1])}}>
+								on:click={() => {imgUrl = parseInt(pokemon?.pokemon_species.url && pokemon?.pokemon_species.url.match(/\/(\d+)\/$/)[1])}}>
 								<img src={pokeballIcon} alt="pokeball" />
 								{ pokemon.name ? pokemon.name.toUpperCase() : pokemon.pokemon_species.name.toUpperCase()}
 							</button>
