@@ -23,12 +23,24 @@ export const getAllPokemon = async () => {
     }
 }
 
+export const getAllPokedexs = async () => {
+    try {
+        const response =  await APIinstance.instance.get(
+            `${APIinstance.APIBaseURL}/pokedex/`
+        )
+        return response.data.results
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // @ts-ignore
 export const getRegionPokedex = async (region) => {
     try {
-        return await APIinstance.instance.get(
+        const response = await APIinstance.instance.get(
             `${APIinstance.APIBaseURL}/pokedex/${region}`
         )
+        return response.data.pokemon_entries;
     } catch (error) {
         console.log(error)
     }
